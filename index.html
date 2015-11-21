@@ -7,10 +7,12 @@
     <link href="css/bootstrap.css" rel="stylesheet"/>
     <link href="css/app.css" rel="stylesheet"/>
     
-    
+    <script src="js/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script src="js/angular-resource.js"></script>
     <script src="js/angular-mock.js"></script>
+    <script src="js/angular-ui-router.js"></script>
+    <script src="js/bootstrap.js"></script>
     
     <script src="app/app.js"></script>
     
@@ -21,48 +23,31 @@
     <script src="app/products/productListCtrl.js"></script>
   </head>
   <body ng-app='productManagement'>
-    
-    <div class="panel panel-primary">
-      <div class="panel-heading"
-           style="font-size: large">
-        Peoduct List
+      <nav class="navbar navbar-inverse">
+        <div class="container">
+          <a class="navbar-brand" ui-sref="home">Acme Product Management</a>
+          <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                <span class="icon-bar">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>       
+            </button>
+          </div>
+          <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a ui-sref="productList">Product List</a></li>
+                <li><a ui-sref="productEdit"><i class="glyphicon glyphicon-plus"></i>Add Product</a></li>
+              </ul>
+          </div>
+        </div>
+        </nav>  
+      <div class="container">
+          <div ui-view></div>
       </div>
-      <div class="panel-body">
-        <table class="table" ng-controller="ProductListCtrl as vm">
-          <thead>
-            <tr>
-              <td>
-                <button type="button"
-                        class="btn btn-primary"
-                        ng-click="vm.toggleImage()">
-                        {{vm.showImage ? "Hide" : "Show"}}Image
-                </button>
-              </td>
-              <td>Product</td>
-              <td>Code</td>
-              <td>Available</td>
-              <td>Price</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="product in vm.products">
-              <td>
-                <img  ng-if="vm.showImage"
-                      ng-src="{{product.imageUrl}}" 
-                      title="{{product.productName}}"
-                      style="width:50px; margin:2px">
-              </td>
-              <td>{{product.productName}}</td>
-              <td>{{product.productCode}}</td>
-              <td>{{product.realiseDate}}</td>
-              <td>{{product.price | currency}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
-    </div>
-    
   </body>
   
 </html>

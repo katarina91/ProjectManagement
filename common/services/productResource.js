@@ -1,0 +1,17 @@
+
+(function (){
+	"use strict";
+	
+	angular
+		.module("common.services")
+		.factory("productResource",
+				 ["$resource",
+				 productResource]);
+				
+				
+	function productResource ($resource)
+	{
+		return $resource("/app/products/:productId");
+	}
+	
+}());

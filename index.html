@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/app.css" rel="stylesheet"/>
+    
+    <script src="app/app.js"></script>
+    <script src="app/products/productListCtrl.js"></script>
+  </head>
+  <body ng-app='productManagement'>
+    
+    <div class="panel panel-primary">
+      <div class="panel-heading"
+           style="font-size: large">
+        Peoduct List
+      </div>
+      <div class="panel-body">
+        <table class="table" ng-controller="ProductListCtrl as vm">
+          <thead>
+            <tr>
+              <td>
+                <button type="button"
+                        class="btn btn-primary"
+                        ng-click="vm.toggleImage()">
+                        {{vm.showImage ? "Hide" : "Show"}}Image
+                </button>
+              </td>
+              <td>Product</td>
+              <td>Code</td>
+              <td>Available</td>
+              <td>Price</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="product in vm.products">
+              <td>
+                <img  ng-if="vm.showImage"
+                      ng-src="{{product.imageUrl}}" 
+                      title="{{product.productName}}"
+                      style="width:50px; margin:2px">
+              </td>
+              <td>{{product.productName}}</td>
+              <td>{{product.productCode}}</td>
+              <td>{{product.realiseDate}}</td>
+              <td>{{product.price | currency}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+    
+  </body>
+  
+</html>

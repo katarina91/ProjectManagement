@@ -29,10 +29,11 @@
 			vm.opened = !vm.opened;
 		}
 		
-		vm.submit = function() {
+		vm.submit = function() 
+		{
 			vm.product.$save( function(date){
-				toastr.success("Success");
-			});
+					toastr.success("Success");
+				});
 		}
 		
 		vm.cancel = function() {
@@ -42,18 +43,18 @@
 		vm.addTags = function (tags) {
 			if(tags){
 				var array = tags.split(',');
-				// vm.product.tags = vm.product.tags ? vm.product.tags.concat(array) : array;
-				if(vm.product.tags.length != 0)
-				{
-					for(var i = 0; i<array.length; i++)
-					{
-						vm.product.tags.push(array[i]);
-					}
-				}
-				else
-				{
-					vm.product.tags = array;
-				}
+				vm.product.tags = vm.product.tags ? vm.product.tags.concat(array) : array;
+				// if(vm.product.tags.length != 0)
+				// {
+				// 	for(var i = 0; i<array.length; i++)
+				// 	{
+				// 		vm.product.tags.push(array[i]);
+				// 	}
+				// }
+				// else
+				// {
+				// 	vm.product.tags = array;
+				// }
 				
 				vm.newTags = "";
 			}

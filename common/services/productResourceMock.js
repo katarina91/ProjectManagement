@@ -111,7 +111,7 @@
 				};
 			}
 			
-			return [200, products, {}];
+			return [200, product, {}];
 		});
 		
 		$httpBackend.whenGET(/app/).passThrough();

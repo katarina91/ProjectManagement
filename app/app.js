@@ -6,6 +6,7 @@
 							  'ui.router',
 							  'ui.mask',
 							  'ui.bootstrap',
+							  'angularCharts',
 							  'productResourceMock']);
 							  
 	
@@ -58,6 +59,17 @@
 											var productId = $stateParams.productId;
 											return productResource.get(
 												{productId: productId}).$promise;
+										}
+									}
+								})
+								.state("priceAnalytics", {
+									url: "/priceAnalytics",
+									templateUrl: "app/prices/priceAnalyticsView.html",
+									controller: "PriceAnalyticsCtrl",
+									resolve: {
+										productResource: "productResource",
+										products: function (productResource,$stateParams){
+											return productResource.query().$promise;
 										}
 									}
 								})

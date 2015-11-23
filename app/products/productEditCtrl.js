@@ -6,13 +6,33 @@
 		.controller("ProductEditCtrl",
 					 ["product",
 					  "$state",
+					  "productService",
 					  ProductEditCtrl]);
 					
-	function ProductEditCtrl(product, $state){
+	function ProductEditCtrl(product, $state, productService){
 		var vm = this;
 		
 		vm.product = product;
+		vm.priceOption = "percent";
 		
+		vm.marginPercent = function(){
+			return productService.calculateMarginPercent(vm.product.price, vm.product.cost);
+		};
+		
+		vm.calculatePrice = function() {
+			var price = 0;
+			
+			if(vm.priceOption == 'amount'){
+				price = productService.calculatePriceFromMarkupAmount(vm.product.cost, vm.markupAmount);
+			}
+			
+			if(vm.priceOption == 'percent'){
+				price = productService.calculatePriceFromMarkupPercent(vm.product.cost, vm.markupPercent);
+			}
+			
+			vm.product.price = price;
+			
+		};
 		
 		if(vm.product && vm.product.productId){
 			vm.title = "Edit: " + vm.product.productName;
